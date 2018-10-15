@@ -18,5 +18,18 @@ namespace TestPlugin
         //plugin inform other clients that the cloud anchor is successfully hosted by the master client
         S2C_InformSuccessHost = 6,
 
+        //normal client send message to plugin to inform that the normal client is ready to start the game
+        C2S_Ready = 7,
+        //When all the normal clients are ready to start the game , the plugin will send a message to the master client
+        // to inform him that he can start the game
+        S2C_ReadyToStart = 8,
+
+        //normal client send message to plugin to inform that the normal client is Not ready to start the game
+        C2S_UnReady,
+
+        //master client relay information to all clients(including himself) through the plugin to leave the waiting room
+        C2S_LeaveWaitingRoom,
+        S2C_LeaveWaitingRoom,
+
     }
 }

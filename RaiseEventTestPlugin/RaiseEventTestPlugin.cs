@@ -50,6 +50,8 @@ namespace TestPlugin
             //Set a random integer as the room number
             Random rnd = new Random();
             m_InfoRoom.I_RoomNumber = rnd.Next(1, 9999);
+
+            m_InfoRoom.I_NumberOfPlayers++;
         }
 
 
@@ -58,11 +60,13 @@ namespace TestPlugin
             base.OnJoin(info);
             m_InfoRoom.I_NumberOfPlayers++;
         }
+
+        //On leave is also called when player is inside a room and got disconnected
         public override void OnLeave(ILeaveGameCallInfo info)
         {
             base.OnLeave(info);
             m_InfoRoom.I_NumberOfPlayers--;
-            //s
+            m_InfoRoom.I_NoOfClientReady--;
         }
 
         public override void OnRaiseEvent(IRaiseEventCallInfo info)
@@ -98,15 +102,51 @@ namespace TestPlugin
                 case MyOwnEventCode.C2S_InformSuccessHost:
                     {
 
-                       // send the enviro level index and level index stored in info.Request.Data to other clients                   
+                        // send the enviro level index and level index stored in info.Request.Data to other clients                   
                         //Broadcast back to other clients except master client
-                        PluginHost.BroadcastEvent(target : ReciverGroup.Others,
+                        PluginHost.BroadcastEvent(target: ReciverGroup.Others,
                                     senderActor: 0,
                                     targetGroup: 0,
                                     data: new Dictionary<byte, object>() { {
                        (byte)245, info.Request.Data }, { 254, 0 } },
                                     evCode: (byte)MyOwnEventCode.S2C_InformSuccessHost,
                                     cacheOp: 0);
+                    }
+                    break;
+                case MyOwnEventCode.C2S_Ready:
+                    {
+                        m_InfoRoom.I_NoOfClientReady++;
+
+                        //when total number of players excluding the master client  equals to the number of normal client ready to start the game
+                        //send a message to the master client to inform him that he can start the game.
+                        if (m_InfoRoom.I_NumberOfPlayers - 1 == m_InfoRoom.I_NoOfClientReady)
+                        {
+                            PluginHost.BroadcastEvent(target: ReciverGroup.Others,
+                                 senderActor: 0,
+                                 targetGroup: 0,
+                                 data: new Dictionary<byte, object>() { {
+                       (byte)245, info.Request.Data }, { 254, 0 } },
+                                 evCode: (byte)MyOwnEventCode.S2C_ReadyToStart,
+                                 cacheOp: 0);
+                        }
+
+                    }
+                    break;
+                case MyOwnEventCode.C2S_UnReady:
+                    {
+                        m_InfoRoom.I_NoOfClientReady--;
+                    }
+                    break;
+                case MyOwnEventCode.C2S_LeaveWaitingRoom:
+                    {
+                        //to all clients
+                        PluginHost.BroadcastEvent(target: ReciverGroup.All,
+                            senderActor: 0,
+                            targetGroup: 0,
+                            data: new Dictionary<byte, object>() { {
+                       (byte)245, info.Request.Data }, { 254, 0 } },
+                            evCode: (byte)MyOwnEventCode.S2C_LeaveWaitingRoom,
+                            cacheOp: 0);
                     }
                     break;
 
