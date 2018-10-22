@@ -23,7 +23,6 @@ namespace TestPlugin
         //When all the normal clients are ready to start the game , the plugin will send a message to the master client
         // to inform him that he can start the game
         S2C_ReadyToStart = 8,
-
         //normal client send message to plugin to inform that the normal client is Not ready to start the game
         C2S_UnReady,
 
@@ -31,5 +30,11 @@ namespace TestPlugin
         C2S_LeaveWaitingRoom,
         S2C_LeaveWaitingRoom,
 
+        // each client request from the plugin to spawn ALL the players
+        C2S_Request_To_SpawnPlayers,
+        S2C_Request_To_SpawnPlayers,
+        //each client request to respawn its own player and inform other clients
+        C2S_RequestToRespawnPlayer,
+        S2C_RequestToRespawnPlayer,
     }
 }
