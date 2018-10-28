@@ -12,5 +12,6 @@ namespace TestPlugin
         public int I_RoomNumber;
         public int I_NumberOfPlayers;
         public int I_NoOfClientReady;
+        public int I_NoOfSuccessfulResolved;
     }
 }
