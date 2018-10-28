@@ -118,9 +118,9 @@ namespace TestPlugin
                     {
                         m_InfoRoom.I_NoOfClientReady++;
 
-                        //when total number of players excluding the master client  equals to the number of normal client ready to start the game
+                        //when total number of players excluding the master client  equals or greater to the number of normal client ready to start the game
                         //send a message to the master client to inform him that he can start the game.
-                        if (m_InfoRoom.I_NumberOfPlayers - 1 == m_InfoRoom.I_NoOfClientReady)
+                        if (m_InfoRoom.I_NumberOfPlayers - 1 >= m_InfoRoom.I_NoOfClientReady)
                         {
                             PluginHost.BroadcastEvent(target: ReciverGroup.Others,
                                  senderActor: 0,
@@ -136,6 +136,18 @@ namespace TestPlugin
                 case MyOwnEventCode.C2S_UnReady:
                     {
                         m_InfoRoom.I_NoOfClientReady--;
+
+                        //Number of clients is lesser than the total number of players excluding the master client , indicate not all the players are ready to start the game
+                        if (m_InfoRoom.I_NoOfClientReady < m_InfoRoom.I_NumberOfPlayers - 1)
+                        {
+                            PluginHost.BroadcastEvent(target: ReciverGroup.Others,
+                                 senderActor: 0,
+                                 targetGroup: 0,
+                                 data: new Dictionary<byte, object>() { {
+                       (byte)245, null }, { 254, 0 } },
+                                 evCode: (byte)MyOwnEventCode.S2C_Not_ReadyToStart,
+                                 cacheOp: 0);
+                        }
                     }
                     break;
                 case MyOwnEventCode.C2S_LeaveWaitingRoom:

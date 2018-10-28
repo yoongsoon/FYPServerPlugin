@@ -25,6 +25,9 @@ namespace TestPlugin
         S2C_ReadyToStart = 8,
         //normal client send message to plugin to inform that the normal client is Not ready to start the game
         C2S_UnReady,
+        //plugin send message to master client to inform him that he can't start the game if  the number of client ready to start the game
+        // is lesser than the total number of players (excluding the master client)
+        S2C_Not_ReadyToStart,
 
         //master client relay information to all clients(including himself) through the plugin to leave the waiting room
         C2S_LeaveWaitingRoom,
