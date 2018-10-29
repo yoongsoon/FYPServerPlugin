@@ -179,7 +179,7 @@ namespace TestPlugin
                         }
                     }
                     break;
-        
+
                 case MyOwnEventCode.C2S_RequestToRespawnPlayer:
                     {
                         //broadcast back to all clients about the respawn index
@@ -199,7 +199,7 @@ namespace TestPlugin
 
                         //When the number of successful anchors resolved is greater or equal to the total
                         //number of clients (excluding the master client)
-                        if (m_InfoRoom.I_NoOfSuccessfulResolved >= m_InfoRoom.I_NumberOfPlayers -1)
+                        if (m_InfoRoom.I_NoOfSuccessfulResolved >= m_InfoRoom.I_NumberOfPlayers - 1)
                         {
 
                             //broadcast back to all clients that they can start the game
@@ -211,6 +211,17 @@ namespace TestPlugin
                                        evCode: (byte)MyOwnEventCode.S2C_Anchor_Resolved_Success,
                                        cacheOp: 0);
                         }
+                    }
+                    break;
+                case MyOwnEventCode.C2S_Start_LoadingScreen:
+                    {
+                        PluginHost.BroadcastEvent(target: ReciverGroup.All,
+                           senderActor: 0,
+                           targetGroup: 0,
+                                 data: new Dictionary<byte, object>() { {
+                       (byte)245, null }, { 254, 0 } },
+                                  evCode: (byte)MyOwnEventCode.S2C_Start_LoadingScreen,
+                                  cacheOp: 0);
                     }
                     break;
             }

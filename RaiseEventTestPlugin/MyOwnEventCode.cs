@@ -45,5 +45,10 @@ namespace TestPlugin
         //once the plugin received all the non master clients message of successful anchor resolved,
         // the plugin will send message to all the clients (including master client) to start the game
         S2C_Anchor_Resolved_Success,
+
+        //Master client request to start the loading for new scene
+        C2S_Start_LoadingScreen,
+        //plugin send message to all clients to inform them to start loading
+        S2C_Start_LoadingScreen,
     }
 }
