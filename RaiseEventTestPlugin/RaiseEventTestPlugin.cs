@@ -226,7 +226,8 @@ namespace TestPlugin
                     break;
                 case MyOwnEventCode.C2S_InformFailHost:
                     {
-                        PluginHost.BroadcastEvent(target: ReciverGroup.All,
+                        //inform others about the failure to host
+                        PluginHost.BroadcastEvent(target: ReciverGroup.Others,
                           senderActor: 0,
                           targetGroup: 0,
                                 data: new Dictionary<byte, object>() { {
