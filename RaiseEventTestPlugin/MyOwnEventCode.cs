@@ -50,5 +50,10 @@ namespace TestPlugin
         C2S_Start_LoadingScreen,
         //plugin send message to all clients to inform them to start loading
         S2C_Start_LoadingScreen,
+
+        //master client send message to plugin to inform the failure to host the anchor
+        C2S_InformFailHost,
+        //plugin send message to other cleints to infrom master client fails to host the anchor
+        S2C_InformFailHost ,
     }
 }

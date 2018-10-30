@@ -224,6 +224,17 @@ namespace TestPlugin
                                   cacheOp: 0);
                     }
                     break;
+                case MyOwnEventCode.C2S_InformFailHost:
+                    {
+                        PluginHost.BroadcastEvent(target: ReciverGroup.All,
+                          senderActor: 0,
+                          targetGroup: 0,
+                                data: new Dictionary<byte, object>() { {
+                       (byte)245, null }, { 254, 0 } },
+                                 evCode: (byte)MyOwnEventCode.S2C_InformFailHost,
+                                 cacheOp: 0);
+                    }
+                    break;
             }
         }
     }
