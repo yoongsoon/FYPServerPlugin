@@ -53,7 +53,12 @@ namespace TestPlugin
 
         //master client send message to plugin to inform the failure to host the anchor
         C2S_InformFailHost,
-        //plugin send message to other cleints to infrom master client fails to host the anchor
-        S2C_InformFailHost ,
+        //plugin send message to other clients to inform them that the master client fails to host the nachor
+        S2C_InformFailHost,
+
+        //master client send message to plugin to inform he is attempting to host the cloud ancor
+        C2S_InfoAttemptToHost,
+        //plugin send message to other clients to inform them that the master client is attempting to host the anchor
+        S2C_InfoAttemptToHost,
     }
 }
