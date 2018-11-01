@@ -33,6 +33,10 @@ namespace TestPlugin
         C2S_LeaveWaitingRoom,
         S2C_LeaveWaitingRoom,
 
+        // each client request from the plugin to spawn ALL the players
+        C2S_Request_To_SpawnPlayers,
+        S2C_Request_To_SpawnPlayers,
+
         //Non master clients that have their anchor successfuly resolved , will inform the plugin
         C2S_Anchor_Resolved_Success,
         //once the plugin received all the non master clients message of successful anchor resolved,
