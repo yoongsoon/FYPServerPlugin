@@ -162,37 +162,6 @@ namespace TestPlugin
                             cacheOp: 0);
                     }
                     break;
-                case MyOwnEventCode.C2S_Request_To_SpawnPlayers:
-                    {
-                        I_PlayerGoCount++;
-
-                        if (I_PlayerGoCount >= m_InfoRoom.I_NumberOfPlayers)
-                        {
-                            //broadcast back too all clients
-                            PluginHost.BroadcastEvent(target: ReciverGroup.All,
-                                senderActor: 0,
-                                targetGroup: 0,
-                                      data: new Dictionary<byte, object>() { {
-                       (byte)245, null }, { 254, 0 } },
-                                       evCode: (byte)MyOwnEventCode.S2C_Request_To_SpawnPlayers,
-                                       cacheOp: 0);
-                        }
-                    }
-                    break;
-
-                case MyOwnEventCode.C2S_RequestToRespawnPlayer:
-                    {
-                        //broadcast back to all clients about the respawn index
-                        PluginHost.BroadcastEvent(target: ReciverGroup.All,
-                            senderActor: 0,
-                            targetGroup: 0,
-                                  data: new Dictionary<byte, object>() { {
-                       (byte)245, info.Request.Data }, { 254, 0 } },
-                                   evCode: (byte)MyOwnEventCode.S2C_RequestToRespawnPlayer,
-                                   cacheOp: 0);
-                    }
-                    break;
-
                 case MyOwnEventCode.C2S_Anchor_Resolved_Success:
                     {
                         m_InfoRoom.I_NoOfSuccessfulResolved++;
