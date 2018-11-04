@@ -17,7 +17,7 @@
     <DebugSymbols>true</DebugSymbols>
     <DebugType>full</DebugType>
     <Optimize>false</Optimize>
-    <OutputPath>..\..\..\..\Desktop\Photon-OnPremise-Server-SDK_v4-0-29-11263\deploy\Plugins\FirstPhotonPlugin\0.1\bin\</OutputPath>
+    <OutputPath>..\..\..\..\..\Desktop\Photon-OnPremise-Server-SDK_v4-0-29-11263\deploy\Plugins\FirstPhotonPlugin\0.1\bin\</OutputPath>
     <DefineConstants>DEBUG;TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
@@ -35,19 +35,19 @@
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="ExitGamesLibs">
-      <HintPath>..\..\..\..\Desktop\Photon-OnPremise-Server-SDK_v4-0-29-11263\lib\ExitGamesLibs.dll</HintPath>
+      <HintPath>..\..\..\..\..\Desktop\Photon-OnPremise-Server-SDK_v4-0-29-11263\lib\ExitGamesLibs.dll</HintPath>
     </Reference>
     <Reference Include="Photon.SocketServer">
-      <HintPath>..\..\..\..\Desktop\Photon-OnPremise-Server-SDK_v4-0-29-11263\lib\Photon.SocketServer.dll</HintPath>
+      <HintPath>..\..\..\..\..\Desktop\Photon-OnPremise-Server-SDK_v4-0-29-11263\lib\Photon.SocketServer.dll</HintPath>
     </Reference>
     <Reference Include="Photon3DotNet">
-      <HintPath>..\..\..\..\Desktop\Photon-OnPremise-Server-SDK_v4-0-29-11263\lib\Photon3DotNet.dll</HintPath>
+      <HintPath>..\..\..\..\..\Desktop\Photon-OnPremise-Server-SDK_v4-0-29-11263\lib\Photon3DotNet.dll</HintPath>
     </Reference>
     <Reference Include="PhotonHivePlugin">
-      <HintPath>..\..\..\..\Desktop\Photon-OnPremise-Server-SDK_v4-0-29-11263\deploy\Loadbalancing\GameServer\bin\PhotonHivePlugin.dll</HintPath>
+      <HintPath>..\..\..\..\..\Desktop\Photon-OnPremise-Server-SDK_v4-0-29-11263\deploy\Loadbalancing\GameServer\bin\PhotonHivePlugin.dll</HintPath>
     </Reference>
     <Reference Include="PhotonHostRuntimeInterfaces">
-      <HintPath>..\..\..\..\Desktop\Photon-OnPremise-Server-SDK_v4-0-29-11263\lib\PhotonHostRuntimeInterfaces.dll</HintPath>
+      <HintPath>..\..\..\..\..\Desktop\Photon-OnPremise-Server-SDK_v4-0-29-11263\lib\PhotonHostRuntimeInterfaces.dll</HintPath>
       <EmbedInteropTypes>True</EmbedInteropTypes>
     </Reference>
     <Reference Include="System" />

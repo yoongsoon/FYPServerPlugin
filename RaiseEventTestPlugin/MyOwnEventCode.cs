@@ -20,11 +20,15 @@ namespace TestPlugin
 
         //normal client send message to plugin to inform that the normal client is ready to start the game
         C2S_Ready = 7,
+        //plugin send message to other clients (excluding the sending client) to inform that the sender client is ready
+        S2C_Ready,
         //When all the normal clients are ready to start the game , the plugin will send a message to the master client
         // to inform him that he can start the game
-        S2C_ReadyToStart = 8,
+        S2C_ReadyToStart,
         //normal client send message to plugin to inform that the normal client is Not ready to start the game
         C2S_UnReady,
+        //plugin send message to other clients (excluding the sending client) to inform that the sender client is NOT ready
+        S2C_UnReady,
         //plugin send message to master client to inform him that he can't start the game if  the number of client ready to start the game
         // is lesser than the total number of players (excluding the master client)
         S2C_Not_ReadyToStart,
@@ -57,5 +61,17 @@ namespace TestPlugin
         C2S_InfoAttemptToHost,
         //plugin send message to other clients to inform them that the master client is attempting to host the anchor
         S2C_InfoAttemptToHost,
+
+        //client that either disconnected or left the waiting room send a message that contains its actorID to the plugin 
+        C2S_DisconnectedOrLeftRoom,
+        //plugin relay the information to other clients
+        S2C_DisconnectedOrLeftRoom,
+
+        //client send message to all the other clients via the plugin to inform everyone that he has joined the waiting room
+        C2S_JoinedWaitingRoom,
+        S2C_JoinedWaitingRoom,
+
+        //info the plugin that the master client has switched in waiting room, therefore reset the ready count in the plugin
+        C2S_MasterClientSwitchedInWaitngRoom,
     }
 }

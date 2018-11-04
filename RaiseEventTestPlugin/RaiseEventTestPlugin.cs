@@ -62,12 +62,27 @@ namespace TestPlugin
             m_InfoRoom.I_NumberOfPlayers++;
         }
 
-        //On leave is also called when player is inside a room and got disconnected
+        //On leave is also called when player is inside a room or got disconnected
         public override void OnLeave(ILeaveGameCallInfo info)
         {
             base.OnLeave(info);
             m_InfoRoom.I_NumberOfPlayers--;
-            m_InfoRoom.I_NoOfClientReady--;
+            if (m_InfoRoom.I_NoOfClientReady >= 0)
+                m_InfoRoom.I_NoOfClientReady--;
+
+            int numberPlayerCounter = m_InfoRoom.I_NumberOfPlayers - 1;
+
+
+            if ((m_InfoRoom.I_NoOfClientReady < numberPlayerCounter) || (m_InfoRoom.I_NoOfClientReady == 0 && numberPlayerCounter == 0))
+            {
+                PluginHost.BroadcastEvent(target: ReciverGroup.Others,
+                     senderActor: 0,
+                     targetGroup: 0,
+                     data: new Dictionary<byte, object>() { {
+                       (byte)245, null }, { 254, 0 } },
+                     evCode: (byte)MyOwnEventCode.S2C_Not_ReadyToStart,
+                     cacheOp: 0);
+            }
         }
 
         public override void OnRaiseEvent(IRaiseEventCallInfo info)
@@ -118,6 +133,15 @@ namespace TestPlugin
                     {
                         m_InfoRoom.I_NoOfClientReady++;
 
+                        PluginHost.BroadcastEvent(target: ReciverGroup.Others,
+                             senderActor: 0,
+                             targetGroup: 0,
+                             data: new Dictionary<byte, object>() { {
+                       (byte)245, info.Request.Data }, { 254, 0 } },
+                             evCode: (byte)MyOwnEventCode.S2C_Ready,
+                             cacheOp: 0);
+
+
                         //when total number of players excluding the master client  equals or greater to the number of normal client ready to start the game
                         //send a message to the master client to inform him that he can start the game.
                         if (m_InfoRoom.I_NumberOfPlayers - 1 >= m_InfoRoom.I_NoOfClientReady)
@@ -136,6 +160,14 @@ namespace TestPlugin
                 case MyOwnEventCode.C2S_UnReady:
                     {
                         m_InfoRoom.I_NoOfClientReady--;
+
+                        PluginHost.BroadcastEvent(target: ReciverGroup.Others,
+                        senderActor: 0,
+                        targetGroup: 0,
+                        data: new Dictionary<byte, object>() { {
+                       (byte)245,  info.Request.Data }, { 254, 0 } },
+                        evCode: (byte)MyOwnEventCode.S2C_UnReady,
+                        cacheOp: 0);
 
                         //Number of clients is lesser than the total number of players excluding the master client , indicate not all the players are ready to start the game
                         if (m_InfoRoom.I_NoOfClientReady < m_InfoRoom.I_NumberOfPlayers - 1)
@@ -231,6 +263,33 @@ namespace TestPlugin
                        (byte)245, null }, { 254, 0 } },
                                evCode: (byte)MyOwnEventCode.S2C_InfoAttemptToHost,
                                cacheOp: 0);
+                    }
+                    break;
+                case MyOwnEventCode.C2S_DisconnectedOrLeftRoom:
+                    {
+                        PluginHost.BroadcastEvent(target: ReciverGroup.Others,
+                     senderActor: 0,
+                     targetGroup: 0,
+                           data: new Dictionary<byte, object>() { {
+                       (byte)245, info.Request.Data  }, { 254, 0 } },
+                            evCode: (byte)MyOwnEventCode.S2C_DisconnectedOrLeftRoom,
+                            cacheOp: 0);
+                    }
+                    break;
+                case MyOwnEventCode.C2S_JoinedWaitingRoom:
+                    {
+                        PluginHost.BroadcastEvent(target: ReciverGroup.Others,
+                     senderActor: 0,
+                     targetGroup: 0,
+                           data: new Dictionary<byte, object>() { {
+                       (byte)245, info.Request.Data  }, { 254, 0 } },
+                            evCode: (byte)MyOwnEventCode.S2C_JoinedWaitingRoom,
+                            cacheOp: 0);
+                    }
+                    break;
+                case MyOwnEventCode.C2S_MasterClientSwitchedInWaitngRoom:
+                    {
+                        m_InfoRoom.I_NoOfClientReady = 0;
                     }
                     break;
             }
