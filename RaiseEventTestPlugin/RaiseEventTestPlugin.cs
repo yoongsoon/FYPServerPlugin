@@ -292,6 +292,28 @@ namespace TestPlugin
                         m_InfoRoom.I_NoOfClientReady = 0;
                     }
                     break;
+                case MyOwnEventCode.C2S_OneOftheClientWon:
+                    {
+                        PluginHost.BroadcastEvent(target: ReciverGroup.Others,
+                   senderActor: 0,
+                   targetGroup: 0,
+                         data: new Dictionary<byte, object>() { {
+                       (byte)245, null  }, { 254, 0 } },
+                          evCode: (byte)MyOwnEventCode.S2C_OneOftheClientWon,
+                          cacheOp: 0);
+                    }
+                    break;
+                case MyOwnEventCode.C2S_OneOftheClientLose:
+                    {
+                        PluginHost.BroadcastEvent(target: ReciverGroup.Others,
+                senderActor: 0,
+                targetGroup: 0,
+                      data: new Dictionary<byte, object>() { {
+                       (byte)245, info.Request.Data  }, { 254, 0 } },
+                       evCode: (byte)MyOwnEventCode.S2C_OneOftheClientLose,
+                       cacheOp: 0);
+                    }
+                    break;
             }
         }
     }

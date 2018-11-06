@@ -73,5 +73,15 @@ namespace TestPlugin
 
         //info the plugin that the master client has switched in waiting room, therefore reset the ready count in the plugin
         C2S_MasterClientSwitchedInWaitngRoom,
+
+        //the client that reach the exit tile will inform the plugin
+        C2S_OneOftheClientWon,
+        //the plugin will relay the information to all other clients
+        S2C_OneOftheClientWon,
+
+        //the client lose all 3 health will inform the plugin
+        C2S_OneOftheClientLose,
+        //the plugin will inform rest of the clients of the the client that lose all 3 health
+        S2C_OneOftheClientLose,
     }
 }
