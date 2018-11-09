@@ -83,5 +83,11 @@ namespace TestPlugin
         C2S_OneOftheClientLose,
         //the plugin will inform rest of the clients of the the client that lose all 3 health
         S2C_OneOftheClientLose,
+
+        //The maptile that is going to be destroyed will relay the information to the plugin
+        C2S_DestroyMapTile,
+        //the plugin will then relay information to all clients including the sender client
+        S2C_DestroyMapTile,
+
     }
 }
