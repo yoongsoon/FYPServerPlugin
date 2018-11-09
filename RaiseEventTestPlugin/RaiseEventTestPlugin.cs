@@ -316,12 +316,23 @@ namespace TestPlugin
                     break;
                 case MyOwnEventCode.C2S_DestroyMapTile:
                     {
-                        PluginHost.BroadcastEvent(target: ReciverGroup.All,
+                        PluginHost.BroadcastEvent(target: ReciverGroup.Others,
                         senderActor: 0,
                         targetGroup: 0,
                         data: new Dictionary<byte, object>() { {
                         (byte)245, info.Request.Data  }, { 254, 0 } },
                         evCode: (byte)MyOwnEventCode.S2C_DestroyMapTile,
+                        cacheOp: 0);
+                    }
+                    break;
+                case MyOwnEventCode.C2S_StepOnTile:
+                    {
+                        PluginHost.BroadcastEvent(target: ReciverGroup.Others,
+                        senderActor: 0,
+                        targetGroup: 0,
+                        data: new Dictionary<byte, object>() { {
+                        (byte)245, info.Request.Data  }, { 254, 0 } },
+                        evCode: (byte)MyOwnEventCode.S2C_StepOnTile,
                         cacheOp: 0);
                     }
                     break;

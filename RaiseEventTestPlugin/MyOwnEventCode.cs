@@ -84,10 +84,14 @@ namespace TestPlugin
         //the plugin will inform rest of the clients of the the client that lose all 3 health
         S2C_OneOftheClientLose,
 
-        //The maptile that is going to be destroyed will relay the information to the plugin
+        //The maptile that is going to be destroyed will send its tile index to the plugin
         C2S_DestroyMapTile,
-        //the plugin will then relay information to all clients including the sender client
+        //the plugin will then relay the tile index of the tile that is going to be destroyed  to all clients excluding the sender client
         S2C_DestroyMapTile,
 
+        //The map tile that is being stepped on  will sends its tile index  to the plugin
+        C2S_StepOnTile,
+        //the plugin will then relay the tile index of the tile being stepped on to all clients excluding the sender client
+        S2C_StepOnTile,
     }
 }
