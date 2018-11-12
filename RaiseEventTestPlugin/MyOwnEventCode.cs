@@ -62,10 +62,10 @@ namespace TestPlugin
         //plugin send message to other clients to inform them that the master client is attempting to host the anchor
         S2C_InfoAttemptToHost,
 
-        //client that either disconnected or left the waiting room send a message that contains its actorID to the plugin 
-        C2S_DisconnectedOrLeftRoom,
+        //client that left the waiting room send a message that contains its actorID to the plugin 
+        C2S_LeftRoom,
         //plugin relay the information to other clients
-        S2C_DisconnectedOrLeftRoom,
+        S2C_LeftRoom,
 
         //client send message to all the other clients via the plugin to inform everyone that he has joined the waiting room
         C2S_JoinedWaitingRoom,

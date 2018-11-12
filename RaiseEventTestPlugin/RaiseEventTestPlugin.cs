@@ -265,14 +265,14 @@ namespace TestPlugin
                                cacheOp: 0);
                     }
                     break;
-                case MyOwnEventCode.C2S_DisconnectedOrLeftRoom:
+                case MyOwnEventCode.C2S_LeftRoom:
                     {
                         PluginHost.BroadcastEvent(target: ReciverGroup.Others,
                      senderActor: 0,
                      targetGroup: 0,
                            data: new Dictionary<byte, object>() { {
                        (byte)245, info.Request.Data  }, { 254, 0 } },
-                            evCode: (byte)MyOwnEventCode.S2C_DisconnectedOrLeftRoom,
+                            evCode: (byte)MyOwnEventCode.S2C_LeftRoom,
                             cacheOp: 0);
                     }
                     break;
