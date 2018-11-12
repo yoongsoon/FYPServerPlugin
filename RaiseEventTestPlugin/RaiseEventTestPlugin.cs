@@ -294,7 +294,7 @@ namespace TestPlugin
                     break;
                 case MyOwnEventCode.C2S_OneOftheClientWon:
                     {
-                        PluginHost.BroadcastEvent(target: ReciverGroup.Others,
+                        PluginHost.BroadcastEvent(target: ReciverGroup.All,
                    senderActor: 0,
                    targetGroup: 0,
                          data: new Dictionary<byte, object>() { {
@@ -305,7 +305,7 @@ namespace TestPlugin
                     break;
                 case MyOwnEventCode.C2S_OneOftheClientLose:
                     {
-                        PluginHost.BroadcastEvent(target: ReciverGroup.Others,
+                        PluginHost.BroadcastEvent(target: ReciverGroup.All,
                 senderActor: 0,
                 targetGroup: 0,
                       data: new Dictionary<byte, object>() { {
