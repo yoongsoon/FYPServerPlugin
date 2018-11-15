@@ -35,19 +35,19 @@
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="ExitGamesLibs">
-      <HintPath>..\..\..\..\..\Desktop\Photon-OnPremise-Server-SDK_v4-0-29-11263\lib\ExitGamesLibs.dll</HintPath>
+      <HintPath>..\..\Photon-OnPremise-Server-SDK_v4-0-29-11263\lib\ExitGamesLibs.dll</HintPath>
     </Reference>
     <Reference Include="Photon.SocketServer">
-      <HintPath>..\..\..\..\..\Desktop\Photon-OnPremise-Server-SDK_v4-0-29-11263\lib\Photon.SocketServer.dll</HintPath>
+      <HintPath>..\..\Photon-OnPremise-Server-SDK_v4-0-29-11263\lib\Photon.SocketServer.dll</HintPath>
     </Reference>
     <Reference Include="Photon3DotNet">
-      <HintPath>..\..\..\..\..\Desktop\Photon-OnPremise-Server-SDK_v4-0-29-11263\lib\Photon3DotNet.dll</HintPath>
+      <HintPath>..\..\Photon-OnPremise-Server-SDK_v4-0-29-11263\lib\Photon3DotNet.dll</HintPath>
     </Reference>
     <Reference Include="PhotonHivePlugin">
-      <HintPath>..\..\..\..\..\Desktop\Photon-OnPremise-Server-SDK_v4-0-29-11263\deploy\Loadbalancing\GameServer\bin\PhotonHivePlugin.dll</HintPath>
+      <HintPath>..\..\Photon-OnPremise-Server-SDK_v4-0-29-11263\deploy\Plugins\WebHooksPlugin1.2\bin\PhotonHivePlugin.dll</HintPath>
     </Reference>
     <Reference Include="PhotonHostRuntimeInterfaces">
-      <HintPath>..\..\..\..\..\Desktop\Photon-OnPremise-Server-SDK_v4-0-29-11263\lib\PhotonHostRuntimeInterfaces.dll</HintPath>
+      <HintPath>..\..\Photon-OnPremise-Server-SDK_v4-0-29-11263\lib\PhotonHostRuntimeInterfaces.dll</HintPath>
       <EmbedInteropTypes>True</EmbedInteropTypes>
     </Reference>
     <Reference Include="System" />

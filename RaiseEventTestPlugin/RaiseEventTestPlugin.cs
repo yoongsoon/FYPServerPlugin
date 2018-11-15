@@ -336,6 +336,28 @@ namespace TestPlugin
                         cacheOp: 0);
                     }
                     break;
+                case MyOwnEventCode.C2S_EnterOnTile:
+                    {
+                        PluginHost.BroadcastEvent(target: ReciverGroup.Others,
+                        senderActor: 0,
+                        targetGroup: 0,
+                        data: new Dictionary<byte, object>() { {
+                        (byte)245, info.Request.Data  }, { 254, 0 } },
+                        evCode: (byte)MyOwnEventCode.S2C_EnterOnTile,
+                        cacheOp: 0);
+                    }
+                    break;
+                case MyOwnEventCode.C2S_InteractOnTile:
+                    {
+                        PluginHost.BroadcastEvent(target: ReciverGroup.Others,
+                        senderActor: 0,
+                        targetGroup: 0,
+                        data: new Dictionary<byte, object>() { {
+                        (byte)245, info.Request.Data  }, { 254, 0 } },
+                        evCode: (byte)MyOwnEventCode.S2C_InteractOnTile,
+                        cacheOp: 0);
+                    }
+                    break;
             }
         }
     }

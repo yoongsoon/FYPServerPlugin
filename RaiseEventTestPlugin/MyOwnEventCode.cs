@@ -93,5 +93,14 @@ namespace TestPlugin
         C2S_StepOnTile,
         //the plugin will then relay the tile index of the tile being stepped on to all clients excluding the sender client
         S2C_StepOnTile,
+        //The map tile that is being Interacted with will sends its tile index to the plugin
+        C2S_InteractOnTile,
+        //the plugin will then relay the tile index of the tile being Interacted with to all clients excluding the sender client
+        S2C_InteractOnTile,
+
+        //The map tile that is being entered will sends its tile index to the plugin
+        C2S_EnterOnTile,
+        //the plugin will then relay the tile index of the tile being entered to all clients excluding the sender client
+        S2C_EnterOnTile,
     }
 }
