@@ -102,14 +102,12 @@ namespace TestPlugin
             {
                 case MyOwnEventCode.C2S_RequestRoomID:
                     {
-                        m_ObjectCustom.message = m_InfoRoom.I_RoomNumber.ToString();
-                        byte[] roomNoInBytes = CustomObject.Serialize(m_ObjectCustom);
-
+   
                         //Broadcast back to the requesting client
                         PluginHost.BroadcastEvent(recieverActors: new List<int> { info.ActorNr },
                                     senderActor: 0,
                                     data: new Dictionary<byte, object>() { {
-                       (byte)245, roomNoInBytes }, { 254, 0 } },
+                       (byte)245,  m_InfoRoom.I_RoomNumber }, { 254, 0 } },
                                     evCode: (byte)MyOwnEventCode.S2C_SendRoomID,
                                     cacheOp: 0);
                     }
