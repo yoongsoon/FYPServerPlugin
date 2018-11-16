@@ -203,7 +203,7 @@ namespace TestPlugin
                                 senderActor: 0,
                                 targetGroup: 0,
                                       data: new Dictionary<byte, object>() { {
-                       (byte)245, null }, { 254, 0 } },
+                       (byte)245, info.Request.Data }, { 254, 0 } },
                                        evCode: (byte)MyOwnEventCode.S2C_Request_To_SpawnPlayers,
                                        cacheOp: 0);
                         }
