@@ -102,5 +102,9 @@ namespace TestPlugin
         C2S_EnterOnTile,
         //the plugin will then relay the tile index of the tile being entered to all clients excluding the sender client
         S2C_EnterOnTile,
+
+
+        C2S_UpdatePosFromMasterClient,
+        S2C_UpdatePosFromMasterClient,
     }
 }

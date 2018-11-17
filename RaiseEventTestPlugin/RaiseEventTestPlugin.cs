@@ -15,6 +15,7 @@ namespace TestPlugin
         private RoomInfo m_InfoRoom;
         private CustomObject m_ObjectCustom = new CustomObject();
         private int I_PlayerGoCount;
+        private int I_NumberOfUpdatedPos;
 
         public string ServerString
         {
@@ -354,6 +355,22 @@ namespace TestPlugin
                         (byte)245, info.Request.Data  }, { 254, 0 } },
                         evCode: (byte)MyOwnEventCode.S2C_InteractOnTile,
                         cacheOp: 0);
+                    }
+                    break;
+                case MyOwnEventCode.C2S_UpdatePosFromMasterClient:
+                    {
+                        I_NumberOfUpdatedPos++;
+
+                        if (I_NumberOfUpdatedPos >= m_InfoRoom.I_NumberOfPlayers -1)
+                        {
+                            PluginHost.BroadcastEvent(target: ReciverGroup.All,
+                        senderActor: 0,
+                        targetGroup: 0,
+                        data: new Dictionary<byte, object>() { {
+                        (byte)245, null  }, { 254, 0 } },
+                        evCode: (byte)MyOwnEventCode.S2C_UpdatePosFromMasterClient,
+                        cacheOp: 0);
+                        }
                     }
                     break;
             }
