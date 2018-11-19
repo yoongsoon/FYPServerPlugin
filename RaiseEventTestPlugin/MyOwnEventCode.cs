@@ -102,5 +102,11 @@ namespace TestPlugin
         C2S_EnterOnTile,
         //the plugin will then relay the tile index of the tile being entered to all clients excluding the sender client
         S2C_EnterOnTile,
+
+        //In AR the the player spawn at offsetted position , therefore to ensure that all clients spawn on the same position,
+        //  the master client  will send its position of all the playe game objects to other clients to use
+        C2S_UpdatePosFromMasterClient,
+        S2C_UpdatePosFromMasterClient,
+
     }
 }
