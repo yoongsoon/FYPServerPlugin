@@ -132,6 +132,7 @@ namespace TestPlugin
                     {
                         m_InfoRoom.I_NoOfClientReady++;
 
+                        //Broadcast to other clients (except the sender client)
                         PluginHost.BroadcastEvent(target: ReciverGroup.Others,
                              senderActor: 0,
                              targetGroup: 0,
